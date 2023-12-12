@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { PostsService } from 'src/app/Service/posts.service';
 
 @Component({
@@ -9,12 +9,15 @@ import { PostsService } from 'src/app/Service/posts.service';
 })
 export class PostsComponent implements OnInit {
   posts: any[] = [];
+  obs$ = new Observable<any>();
   constructor(private postSvc: PostsService) {}
 
   ngOnInit(): void {
     this.postSvc.getPosts().subscribe((data: any) => {
       this.posts = data;
     });
+    // async pipe
+    this.obs$ = this.postSvc.getPosts();
   }
 
   postdata() {
@@ -26,7 +29,10 @@ export class PostsComponent implements OnInit {
     };
 
     this.postSvc.postPosts(post).subscribe(
-      (res) => (this.posts = [...this.posts, res]),
+      (res) => {
+        this.posts = [...this.posts, res];
+        this.obs$ = of(this.posts);
+      },
       (err) => console.log(err),
       () => console.log('complete')
     );

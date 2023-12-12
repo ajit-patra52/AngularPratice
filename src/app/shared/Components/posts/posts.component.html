@@ -1,12 +1,13 @@
-<!-- <p>posts works!</p>
-<pre>
-    {{posts | json}}
+
+<!-- <pre>
+    {{obs$ | async}}
 </pre> -->
 <div>
     <button (click)="postdata()">Post</button>
 </div>
 <div>
-    <div *ngFor="let post of posts" style="padding-top: 10px;">
+    <!-- <div *ngFor="let post of obs$ | async" style="padding-top: 10px;"> -->
+    <div *ngFor="let post of obs$ | async" style="padding-top: 10px;">
         <details>
             <summary>
                 {{post?.title}}
