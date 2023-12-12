@@ -27,7 +27,8 @@ export class PostsComponent implements OnInit {
 
     this.postSvc.postPosts(post).subscribe(
       (res) => (this.posts = [...this.posts, res]),
-      (err) => console.log(err)
+      (err) => console.log(err),
+      () => console.log('complete')
     );
   }
 }
