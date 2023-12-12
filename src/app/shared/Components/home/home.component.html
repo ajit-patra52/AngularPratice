@@ -1,0 +1,25 @@
+<div class="text-center">
+    <p>Parent works!</p>
+    <div>
+        <p>
+            {{randmNum}}
+        </p>
+        <button>Click Parent</button>
+    </div>
+    <div class="text-center d-flex" style="justify-content:center;gap: 1rem;">
+        <div>
+           <app-cmp1 [randmNum]="randmNum" (updateNum)="updateNumCapture($event)"></app-cmp1>
+        </div>
+        <mat-divider vertical="true"></mat-divider>
+        <div>
+            <app-cmp2 [randmNum]="randmNum" (updateNum)="updateNumCapture($event)"></app-cmp2>
+         </div>
+    </div>
+</div>
+
+<div style="padding: 1rem;">
+    <h2>Posts Service</h2>
+<hr/>
+<app-posts></app-posts>
+</div>
+
